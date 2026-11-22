@@ -26,41 +26,53 @@
 
       <section class="content-block" aria-labelledby="legend-heading">
         <h2 id="legend-heading">Campus Map Legend</h2>
-        <p class="legend-intro">Click a site to see its photo and the buildings and gates listed on the campus map.</p>
-        <div class="photo-choice-grid">
+        <p class="legend-intro">Click a site to see its photos and everything inside it.</p>
+        <div class="legend-grid">
           <button type="button" class="photo-tile" data-site="sv">
             <div class="photo-tile-frame">
-              <img src="site-sv.jpg" alt="St. Vincent (SV) site of Adamson University">
+              <img src="sv-facade.jpg" alt="St. Vincent (SV) site facade" loading="lazy">
               <div class="photo-tile-shade" aria-hidden="true"></div>
             </div>
             <div class="photo-tile-body">
               <h3>St. Vincent (SV) Site</h3>
               <p>SV Building, church, gymnasium, canteen, and Marian Center.</p>
-              <span class="photo-tile-cta">View buildings &rarr;</span>
+              <span class="photo-tile-cta">View site &rarr;</span>
             </div>
           </button>
 
-          <button type="button" class="photo-tile" data-site="stoz">
+          <button type="button" class="photo-tile" data-site="st">
             <div class="photo-tile-frame">
-              <img src="site-st-oz.jpg" alt="St. Theresa (ST) and Ozanam (OZ) sites of Adamson University">
+              <img src="st-gate.jpg" alt="St. Theresa (ST) site gate" loading="lazy">
               <div class="photo-tile-shade" aria-hidden="true"></div>
             </div>
             <div class="photo-tile-body">
-              <h3>St. Theresa (ST) &amp; Ozanam (OZ) Sites</h3>
-              <p>ST Building, LM Building, OZ Building, theater, and laboratories.</p>
-              <span class="photo-tile-cta">View buildings &rarr;</span>
+              <h3>St. Theresa (ST) Site</h3>
+              <p>ST Building, canteen, quad, gardens, and entrances.</p>
+              <span class="photo-tile-cta">View site &rarr;</span>
+            </div>
+          </button>
+
+          <button type="button" class="photo-tile" data-site="oz">
+            <div class="photo-tile-frame">
+              <img src="oz-building.jpg" alt="Ozanam (OZ) Building" loading="lazy">
+              <div class="photo-tile-shade" aria-hidden="true"></div>
+            </div>
+            <div class="photo-tile-body">
+              <h3>Ozanam (OZ) Site</h3>
+              <p>OZ Building, CT Building, theater, canteen, and laboratories.</p>
+              <span class="photo-tile-cta">View site &rarr;</span>
             </div>
           </button>
 
           <button type="button" class="photo-tile" data-site="cs">
             <div class="photo-tile-frame">
-              <img src="site-cs.jpg" alt="Cardinal Santos (CS) and BED sites of Adamson University">
+              <img src="cs-building.jpg" alt="Cardinal Santos (CS) Building" loading="lazy">
               <div class="photo-tile-shade" aria-hidden="true"></div>
             </div>
             <div class="photo-tile-body">
               <h3>Cardinal Santos (CS) / BED Sites</h3>
-              <p>CS Building, annexes, JP Building, FRC Building, and Computer Laboratory.</p>
-              <span class="photo-tile-cta">View buildings &rarr;</span>
+              <p>CS Building, gardens, walkway, Falcon Bridge, FRC and JP buildings.</p>
+              <span class="photo-tile-cta">View site &rarr;</span>
             </div>
           </button>
         </div>
@@ -100,11 +112,14 @@
     </dialog>
 
     <script>
+      /* items: [map number or null, name]. null = not numbered on the campus map. */
       const siteDetails = {
         sv: {
           title: "St. Vincent (SV) Site",
-          photo: "site-sv.jpg",
           exits: "San Marcelino Street exits serve this site.",
+          photos: [
+            ["sv-facade.jpg", "SV Facade"]
+          ],
           items: [
             [1, "SV Building"],
             [2, "SV Covered Court"],
@@ -118,14 +133,35 @@
             [10, "SVP Church Gate"]
           ]
         },
-        stoz: {
-          title: "St. Theresa (ST) & Ozanam (OZ) Sites",
-          photo: "site-st-oz.jpg",
+        st: {
+          title: "St. Theresa (ST) Site",
           exits: "Romualdez Street exits serve this site.",
+          photos: [
+            ["st-gate.jpg", "ST Gate"],
+            ["st-building.jpg", "ST Building"],
+            ["st-canteen.jpg", "ST Canteen"],
+            ["st-quad.jpg", "ST Quad"],
+            ["st-garden.jpg", "ST Garden"],
+            ["st-botanical-garden.jpg", "ST Botanical Garden"]
+          ],
           items: [
             [1, "ST Building"],
             [2, "ST Pedestrian Entrance/Exit"],
             [3, "ST Service Gate"],
+            [null, "ST Canteen"],
+            [null, "ST Quad"],
+            [null, "ST Garden"],
+            [null, "ST Botanical Garden"]
+          ]
+        },
+        oz: {
+          title: "Ozanam (OZ) Site",
+          exits: "Romualdez Street exits serve this side of campus.",
+          photos: [
+            ["oz-building.jpg", "OZ Building"],
+            ["ct-building.jpg", "CT Building"]
+          ],
+          items: [
             [4, "Adamson University Theater / Art Gallery"],
             [5, "OZ Canteen"],
             [6, "Fr. Leandro Montanana (LM) Building"],
@@ -133,13 +169,22 @@
             [8, "Chemical Engineering & ECE Laboratories"],
             [9, "Chemistry Laboratory"],
             [10, "OZ Vehicle and Pedestrian Entrance/Exit"],
-            [11, "OZ Service Gate"]
+            [11, "OZ Service Gate"],
+            [null, "CT Building"]
           ]
         },
         cs: {
           title: "Cardinal Santos (CS) / BED Sites",
-          photo: "site-cs.jpg",
           exits: "Zobel Street exits and the bridge crossings serve this site.",
+          photos: [
+            ["cs-building.jpg", "CS Building"],
+            ["cs-garden.jpg", "CS Garden"],
+            ["cs-garden-cafe.jpg", "CS Garden Cafe"],
+            ["cs-walkway.jpg", "CS Walkway"],
+            ["falcon-bridge.jpg", "Falcon Bridge"],
+            ["frc-building.jpg", "FRC Building"],
+            ["jp-grounds.jpg", "JP Grounds"]
+          ],
           items: [
             [1, "CS Building"],
             [2, "CS Vehicle and Pedestrian Entrance/Exit"],
@@ -150,7 +195,10 @@
             [7, "St. John Perboyre (JP) Building"],
             [8, "BED Vehicle and Pedestrian Entrance/Exit"],
             [9, "Francis Regis Ciet (FRC) Building"],
-            [10, "Computer Laboratory"]
+            [10, "Computer Laboratory"],
+            [null, "CS Garden"],
+            [null, "CS Walkway"],
+            [null, "Falcon Bridge"]
           ]
         }
       };
@@ -160,6 +208,10 @@
       const siteContent = document.getElementById("siteModalContent");
       const siteFooter = document.getElementById("siteModalFooter");
       const closeSiteBtn = document.getElementById("closeSiteBtn");
+
+      function esc(t) {
+        return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+      }
 
       function closeSiteModal() {
         if (!siteModal.open || siteModal.classList.contains("is-closing")) return;
@@ -179,13 +231,35 @@
         if (!data) return;
         siteModal.classList.remove("is-closing");
         siteTitle.textContent = data.title;
-        const rows = data.items
-          .map(([n, name]) => `<li value="${n}">${name.replace(/&/g, "&amp;")}</li>`)
+
+        const gallery = data.photos
+          .map(
+            ([file, caption]) => `
+              <figure class="site-photo">
+                <a href="${file}" target="_blank" rel="noopener">
+                  <img src="${file}" alt="${esc(caption)}" loading="lazy">
+                </a>
+                <figcaption>${esc(caption)}</figcaption>
+              </figure>`
+          )
           .join("");
+
+        const rows = data.items
+          .map(
+            ([n, name]) =>
+              `<li><span class="bnum${n === null ? " bnum-none" : ""}">${n === null ? "&bull;" : n}</span><span>${esc(name)}</span></li>`
+          )
+          .join("");
+
+        const hasUnnumbered = data.items.some(([n]) => n === null);
+
         siteContent.innerHTML = `
-          <img class="modal-site-photo" src="${data.photo}" alt="${data.title}">
-          <h4>Buildings &amp; Gates (numbers match the campus map)</h4>
-          <ol class="building-list">${rows}</ol>
+          <h4>Photos (tap a photo to open it full size)</h4>
+          <div class="site-gallery">${gallery}</div>
+          <p class="photo-credit">Photos: Silip@Lente-AdU Film and Photography Organization.</p>
+          <h4>Everything in this site</h4>
+          <ul class="building-list">${rows}</ul>
+          ${hasUnnumbered ? '<p class="list-hint">Numbers match the campus map. A dot means the place is not numbered on the map.</p>' : '<p class="list-hint">Numbers match the campus map.</p>'}
           <div class="modal-ref-links">
             <span>${data.exits}</span>
             <a href="#exits-heading" id="jumpExits">Evacuation Exits &amp; Rules</a>
@@ -198,6 +272,7 @@
         document.getElementById("siteFooterClose").addEventListener("click", closeSiteModal);
         document.getElementById("jumpMap").addEventListener("click", closeSiteModal);
         document.getElementById("jumpExits").addEventListener("click", closeSiteModal);
+        siteContent.scrollTop = 0;
         siteModal.showModal();
       }
 
