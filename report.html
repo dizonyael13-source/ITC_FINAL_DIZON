@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Report &amp; Contact | Safe Campus Campaign</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <header class="top-bar">
+      <a class="brand-mark" href="index.html">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Safe Campus Campaign</span>
+      </a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portal.html">Adamson Portal</a></li>
+          <li><a href="campaign.html">Safety Campaign</a></li>
+          <li><a href="directory.html">Hotlines &amp; Contacts</a></li>
+          <li><a href="campus-map.html">Adamson Map</a></li>
+          <li><a href="report.html" aria-current="page">Report &amp; Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="page-wrap">
+      <section class="section-banner">
+        <span class="tag-pill">Get in Touch</span>
+        <h1>Report a Concern or Contact Us</h1>
+        <p>Use the form below to share a safety concern or question. For immediate emergencies, call 911 or contact campus security directly.</p>
+      </section>
+
+      <section class="content-block" aria-labelledby="form-heading">
+        <h2 id="form-heading">Safety Concern Form</h2>
+        <form class="report-form" action="#" method="post">
+          <div class="form-row">
+            <label for="reporter-name">Full name</label>
+            <input type="text" id="reporter-name" name="reporter_name" required>
+          </div>
+
+          <div class="form-row">
+            <label for="reporter-email">Email address</label>
+            <input type="email" id="reporter-email" name="reporter_email" required>
+          </div>
+
+          <div class="form-row">
+            <label for="concern-type">Topic</label>
+            <select id="concern-type" name="concern_type">
+              <option value="disaster">Disaster / Hazard</option>
+              <option value="threat">Security / Threat</option>
+              <option value="bullying">School Bullying</option>
+              <option value="harassment">School Harassment</option>
+              <option value="hazing">Anti-Hazing / Fraternity Related</option>
+              <option value="other">Other Question</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="concern-details">Details</label>
+            <textarea id="concern-details" name="concern_details" rows="5"></textarea>
+          </div>
+
+          <button class="btn-primary" type="submit">Submit Form</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="transitions.js"></script>
+  </body>
+</html>
