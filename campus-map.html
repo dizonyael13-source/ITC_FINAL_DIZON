@@ -30,7 +30,7 @@
         <div class="legend-grid">
           <button type="button" class="photo-tile" data-site="sv">
             <div class="photo-tile-frame">
-              <img src="sv-facade.jpg" alt="St. Vincent (SV) site facade" loading="lazy">
+              <img src="SV SITE.jpg" alt="St. Vincent (SV) site facade" loading="lazy">
               <div class="photo-tile-shade" aria-hidden="true"></div>
             </div>
             <div class="photo-tile-body">
@@ -42,7 +42,7 @@
 
           <button type="button" class="photo-tile" data-site="st">
             <div class="photo-tile-frame">
-              <img src="st-gate.jpg" alt="St. Theresa (ST) site gate" loading="lazy">
+              <img src="ST SITE.jpg" alt="St. Theresa (ST) site gate" loading="lazy">
               <div class="photo-tile-shade" aria-hidden="true"></div>
             </div>
             <div class="photo-tile-body">
@@ -54,7 +54,7 @@
 
           <button type="button" class="photo-tile" data-site="oz">
             <div class="photo-tile-frame">
-              <img src="oz-building.jpg" alt="Ozanam (OZ) Building" loading="lazy">
+              <img src="OZ SITE.jpg" alt="Ozanam (OZ) Building" loading="lazy">
               <div class="photo-tile-shade" aria-hidden="true"></div>
             </div>
             <div class="photo-tile-body">
@@ -66,7 +66,7 @@
 
           <button type="button" class="photo-tile" data-site="cs">
             <div class="photo-tile-frame">
-              <img src="cs-building.jpg" alt="Cardinal Santos (CS) Building" loading="lazy">
+              <img src="CS SITE.jpg" alt="Cardinal Santos (CS) Building" loading="lazy">
               <div class="photo-tile-shade" aria-hidden="true"></div>
             </div>
             <div class="photo-tile-body">
@@ -118,7 +118,7 @@
           title: "St. Vincent (SV) Site",
           exits: "San Marcelino Street exits serve this site.",
           photos: [
-            ["sv-facade.jpg", "SV Facade"]
+            ["SV SITE.jpg", "SV Facade"]
           ],
           items: [
             [1, "SV Building"],
@@ -137,12 +137,12 @@
           title: "St. Theresa (ST) Site",
           exits: "Romualdez Street exits serve this site.",
           photos: [
-            ["st-gate.jpg", "ST Gate"],
-            ["st-building.jpg", "ST Building"],
-            ["st-canteen.jpg", "ST Canteen"],
-            ["st-quad.jpg", "ST Quad"],
-            ["st-garden.jpg", "ST Garden"],
-            ["st-botanical-garden.jpg", "ST Botanical Garden"]
+            ["ST SITE.jpg", "ST Gate"],
+            ["ST BUILDING.jpg", "ST Building"],
+            ["ST CANTEEN.jpg", "ST Canteen"],
+            ["ST QUAD.jpg", "ST Quad"],
+            ["ST GARDEN.jpg", "ST Garden"],
+            ["ST BOTANICAL GARDEN.jpg", "ST Botanical Garden"]
           ],
           items: [
             [1, "ST Building"],
@@ -158,8 +158,8 @@
           title: "Ozanam (OZ) Site",
           exits: "Romualdez Street exits serve this side of campus.",
           photos: [
-            ["oz-building.jpg", "OZ Building"],
-            ["ct-building.jpg", "CT Building"]
+            ["OZ SITE.jpg", "OZ Building"],
+            ["CT BUILDING.jpg", "CT Building"]
           ],
           items: [
             [4, "Adamson University Theater / Art Gallery"],
@@ -177,13 +177,13 @@
           title: "Cardinal Santos (CS) / BED Sites",
           exits: "Zobel Street exits and the bridge crossings serve this site.",
           photos: [
-            ["cs-building.jpg", "CS Building"],
-            ["cs-garden.jpg", "CS Garden"],
-            ["cs-garden-cafe.jpg", "CS Garden Cafe"],
-            ["cs-walkway.jpg", "CS Walkway"],
-            ["falcon-bridge.jpg", "Falcon Bridge"],
-            ["frc-building.jpg", "FRC Building"],
-            ["jp-grounds.jpg", "JP Grounds"]
+            ["CS SITE.jpg", "CS Building"],
+            ["CS GARDEN.jpg", "CS Garden"],
+            ["CS GARDEN CAFE.jpg", "CS Garden Cafe"],
+            ["CS WALKWAY_SITE.jpg", "CS Walkway"],
+            ["FALCON BRIDGE.jpg", "Falcon Bridge"],
+            ["FRC BUILDING.jpg", "FRC Building"],
+            ["JP SITE.jpg", "JP Grounds"]
           ],
           items: [
             [1, "CS Building"],
@@ -236,8 +236,8 @@
           .map(
             ([file, caption]) => `
               <figure class="site-photo">
-                <a href="${file}" target="_blank" rel="noopener">
-                  <img src="${file}" alt="${esc(caption)}" loading="lazy">
+                <a href="${encodeURI(file)}" target="_blank" rel="noopener">
+                  <img src="${encodeURI(file)}" alt="${esc(caption)}" loading="lazy">
                 </a>
                 <figcaption>${esc(caption)}</figcaption>
               </figure>`
