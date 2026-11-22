@@ -26,32 +26,43 @@
 
       <section class="content-block" aria-labelledby="legend-heading">
         <h2 id="legend-heading">Campus Map Legend</h2>
-        <div class="card-grid">
-          <article class="info-card">
-            <h3>St. Vincent (SV) Site</h3>
-            <ul>
-              <li>SV Building, SV Hall, SV Canteen</li>
-              <li>SV Covered Court &amp; SV Gymnasium</li>
-              <li>St. Vincent de Paul Church &amp; Marian Center</li>
-              <li>Falcon Nest &amp; surrounding parking/walkways</li>
-            </ul>
-          </article>
-          <article class="info-card">
-            <h3>St. Theresa (ST) &amp; Ozanam (OZ) Site</h3>
-            <ul>
-              <li>ST Building, LM Building, OZ Building</li>
-              <li>ADU Theater &amp; CT Building</li>
-              <li>Engineering/Chemistry laboratories &amp; quadrangles</li>
-            </ul>
-          </article>
-          <article class="info-card">
-            <h3>Cardinal Santos (CS) Site</h3>
-            <ul>
-              <li>CS Building &amp; CS Building Annex</li>
-              <li>JP Building &amp; FRC Building</li>
-              <li>Garden Cafe &amp; quadrangles along Zobel St.</li>
-            </ul>
-          </article>
+        <p class="legend-intro">Click a site to see its photo and the buildings and gates listed on the campus map.</p>
+        <div class="photo-choice-grid">
+          <button type="button" class="photo-tile" data-site="sv">
+            <div class="photo-tile-frame">
+              <img src="site-sv.jpg" alt="St. Vincent (SV) site of Adamson University">
+              <div class="photo-tile-shade" aria-hidden="true"></div>
+            </div>
+            <div class="photo-tile-body">
+              <h3>St. Vincent (SV) Site</h3>
+              <p>SV Building, church, gymnasium, canteen, and Marian Center.</p>
+              <span class="photo-tile-cta">View buildings &rarr;</span>
+            </div>
+          </button>
+
+          <button type="button" class="photo-tile" data-site="stoz">
+            <div class="photo-tile-frame">
+              <img src="site-st-oz.jpg" alt="St. Theresa (ST) and Ozanam (OZ) sites of Adamson University">
+              <div class="photo-tile-shade" aria-hidden="true"></div>
+            </div>
+            <div class="photo-tile-body">
+              <h3>St. Theresa (ST) &amp; Ozanam (OZ) Sites</h3>
+              <p>ST Building, LM Building, OZ Building, theater, and laboratories.</p>
+              <span class="photo-tile-cta">View buildings &rarr;</span>
+            </div>
+          </button>
+
+          <button type="button" class="photo-tile" data-site="cs">
+            <div class="photo-tile-frame">
+              <img src="site-cs.jpg" alt="Cardinal Santos (CS) and BED sites of Adamson University">
+              <div class="photo-tile-shade" aria-hidden="true"></div>
+            </div>
+            <div class="photo-tile-body">
+              <h3>Cardinal Santos (CS) / BED Sites</h3>
+              <p>CS Building, annexes, JP Building, FRC Building, and Computer Laboratory.</p>
+              <span class="photo-tile-cta">View buildings &rarr;</span>
+            </div>
+          </button>
         </div>
       </section>
 
@@ -79,6 +90,138 @@
       </section>
     </main>
 
+    <dialog id="siteModal" class="safety-modal" aria-labelledby="siteModalTitle">
+      <div class="modal-header">
+        <h3 id="siteModalTitle">Campus Site</h3>
+        <button type="button" class="modal-close" id="closeSiteBtn" aria-label="Close details">&times;</button>
+      </div>
+      <div class="modal-body" id="siteModalContent"></div>
+      <div class="modal-footer" id="siteModalFooter"></div>
+    </dialog>
+
+    <script>
+      const siteDetails = {
+        sv: {
+          title: "St. Vincent (SV) Site",
+          photo: "site-sv.jpg",
+          exits: "San Marcelino Street exits serve this site.",
+          items: [
+            [1, "SV Building"],
+            [2, "SV Covered Court"],
+            [3, "Adamson University Gymnasium"],
+            [4, "SV Hall"],
+            [5, "Jubilee Statue"],
+            [6, "SV Vehicle and Pedestrian Entrance/Exit"],
+            [7, "SV Canteen"],
+            [8, "St. Vincent de Paul Church"],
+            [9, "Marian Center"],
+            [10, "SVP Church Gate"]
+          ]
+        },
+        stoz: {
+          title: "St. Theresa (ST) & Ozanam (OZ) Sites",
+          photo: "site-st-oz.jpg",
+          exits: "Romualdez Street exits serve this site.",
+          items: [
+            [1, "ST Building"],
+            [2, "ST Pedestrian Entrance/Exit"],
+            [3, "ST Service Gate"],
+            [4, "Adamson University Theater / Art Gallery"],
+            [5, "OZ Canteen"],
+            [6, "Fr. Leandro Montanana (LM) Building"],
+            [7, "OZ Building"],
+            [8, "Chemical Engineering & ECE Laboratories"],
+            [9, "Chemistry Laboratory"],
+            [10, "OZ Vehicle and Pedestrian Entrance/Exit"],
+            [11, "OZ Service Gate"]
+          ]
+        },
+        cs: {
+          title: "Cardinal Santos (CS) / BED Sites",
+          photo: "site-cs.jpg",
+          exits: "Zobel Street exits and the bridge crossings serve this site.",
+          items: [
+            [1, "CS Building"],
+            [2, "CS Vehicle and Pedestrian Entrance/Exit"],
+            [3, "CS Annex Service Gate"],
+            [4, "CS Building Annex 2"],
+            [5, "Garden Cafe / Falcon Radio Station"],
+            [6, "CS Building Annex 1"],
+            [7, "St. John Perboyre (JP) Building"],
+            [8, "BED Vehicle and Pedestrian Entrance/Exit"],
+            [9, "Francis Regis Ciet (FRC) Building"],
+            [10, "Computer Laboratory"]
+          ]
+        }
+      };
+
+      const siteModal = document.getElementById("siteModal");
+      const siteTitle = document.getElementById("siteModalTitle");
+      const siteContent = document.getElementById("siteModalContent");
+      const siteFooter = document.getElementById("siteModalFooter");
+      const closeSiteBtn = document.getElementById("closeSiteBtn");
+
+      function closeSiteModal() {
+        if (!siteModal.open || siteModal.classList.contains("is-closing")) return;
+        siteModal.classList.add("is-closing");
+        siteModal.addEventListener(
+          "animationend",
+          () => {
+            siteModal.classList.remove("is-closing");
+            siteModal.close();
+          },
+          { once: true }
+        );
+      }
+
+      function openSite(key) {
+        const data = siteDetails[key];
+        if (!data) return;
+        siteModal.classList.remove("is-closing");
+        siteTitle.textContent = data.title;
+        const rows = data.items
+          .map(([n, name]) => `<li value="${n}">${name.replace(/&/g, "&amp;")}</li>`)
+          .join("");
+        siteContent.innerHTML = `
+          <img class="modal-site-photo" src="${data.photo}" alt="${data.title}">
+          <h4>Buildings &amp; Gates (numbers match the campus map)</h4>
+          <ol class="building-list">${rows}</ol>
+          <div class="modal-ref-links">
+            <span>${data.exits}</span>
+            <a href="#exits-heading" id="jumpExits">Evacuation Exits &amp; Rules</a>
+          </div>
+        `;
+        siteFooter.innerHTML = `
+          <a href="#map-photo-heading" class="btn-primary" id="jumpMap">View Campus Map</a>
+          <button type="button" class="btn-secondary" id="siteFooterClose">Close</button>
+        `;
+        document.getElementById("siteFooterClose").addEventListener("click", closeSiteModal);
+        document.getElementById("jumpMap").addEventListener("click", closeSiteModal);
+        document.getElementById("jumpExits").addEventListener("click", closeSiteModal);
+        siteModal.showModal();
+      }
+
+      document.querySelectorAll(".photo-tile[data-site]").forEach((tile) => {
+        tile.addEventListener("click", () => openSite(tile.dataset.site));
+      });
+
+      closeSiteBtn.addEventListener("click", closeSiteModal);
+
+      siteModal.addEventListener("cancel", (e) => {
+        e.preventDefault();
+        closeSiteModal();
+      });
+
+      siteModal.addEventListener("click", (e) => {
+        const rect = siteModal.getBoundingClientRect();
+        const outside =
+          e.clientX < rect.left ||
+          e.clientX > rect.right ||
+          e.clientY < rect.top ||
+          e.clientY > rect.bottom;
+        if (outside) closeSiteModal();
+      });
+    </script>
     <script src="transitions.js"></script>
   </body>
 </html>
