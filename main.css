@@ -742,8 +742,22 @@ figcaption {
 
 .legend-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 22px;
+  align-items: stretch;
+}
+
+@media (max-width: 1100px) {
+  .legend-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .legend-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 button.photo-tile {
@@ -751,6 +765,22 @@ button.photo-tile {
   text-align: left;
   cursor: pointer;
   width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.legend-grid .photo-tile-frame {
+  flex: 0 0 auto;
+}
+
+.legend-grid .photo-tile-body {
+  flex: 1 1 auto;
+}
+
+.legend-grid .photo-tile-cta {
+  margin-top: auto;
+  padding-top: 8px;
 }
 
 .site-gallery {
