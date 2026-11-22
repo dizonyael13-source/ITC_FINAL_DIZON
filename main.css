@@ -735,6 +735,116 @@ figcaption {
   border-top: 1px solid var(--line-subtle);
 }
 
+/* Campus map legend: clickable site tiles + popup */
+.legend-intro {
+  margin-bottom: 16px;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 22px;
+}
+
+button.photo-tile {
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+}
+
+.site-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.site-gallery:has(.site-photo:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.site-photo {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.site-photo a {
+  display: block;
+}
+
+.site-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background: #040912;
+}
+
+.site-photo figcaption {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-primary);
+}
+
+.photo-credit,
+.list-hint {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: var(--ink-secondary);
+}
+
+.building-list {
+  list-style: none;
+  margin: 6px 0 4px;
+  padding-left: 0;
+}
+
+.building-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+  color: var(--ink-primary);
+}
+
+.bnum {
+  flex: 0 0 auto;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--line-accent);
+  background: rgba(56, 189, 248, 0.16);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.bnum-none {
+  color: var(--ink-secondary);
+  background: transparent;
+  border-color: var(--line-subtle);
+}
+
+.modal-ref-links span {
+  font-size: 0.94rem;
+  color: var(--ink-secondary);
+}
+
+@media (max-width: 480px) {
+  .site-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 900px) {
   .photo-choice-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
